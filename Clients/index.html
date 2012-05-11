@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <link rel="shortcut icon" href="http://trollbeads.com/css/images/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <style type='text/css'>
+            #site {
+                width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+                box-shadow: 0 0 10px 1px #999, inset 0 0 10px #ddd;
+                border-radius: 10px;
+            } 
+
+            .hide { display: none; }
+            input { display: block; }
+            h2 { padding-top: 20px; }
+        </style>
+    </head>
+    <body>
+        <div id='site'>
+            <h1>CRUD</h1>
+
+            <h2>Create</h2>
+            <input type='text' placeholder='type in SKU' id='sku' />
+            <input type='text' placeholder='type in name' id='name' />
+            <input type='text' placeholder='type in price' id='price' />
+            <a href='#' class='btn btn-success' id='create'>create</a>
+
+            <h2>Read, Update & Delete</h2>
+
+            <table id='products' class='table table-striped table-bordered'></table>
+        </div>
+
+        <div class="modal hide" id="updateModal">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">×</button>
+            <h3>Update <span class='name'></span></h3>
+          </div>
+          <div class="modal-body">
+            <input type='text' disabled placeholder='type in SKU' id='u-sku' />
+            <input type='text' placeholder='type in name' id='u-name' />
+            <input type='text' placeholder='type in price' id='u-price' />
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Close</a>
+            <a href='#' class='btn btn-primary' id='update' data-dismiss="modal">update</a>
+          </div>
+        </div>
+
+        <script type="text/javascript" src='js/jquery-1.7.2.min.js'></script>
+        <script type="text/javascript" src='js/bootstrap.min.js'></script>
+        <script type="text/javascript">
+            var api = "http://localhost:8888/products";
+            var debug;
+            var products;
+            
+            // Read products from API
+            function read(){
+                $.getJSON(api, function(data) {
+                  var items = [];
+                  products = data;
+
+                  $.each(data, function(key, val) {
+                    items.push('<tr><td width="300">' + val.name + '</td><td width="150">' + val.price +' DKK</td><td><a href="#" id="' + val.sku + '" class="btn btn-danger delete">delete</a></td><td><a href="#" id="' + val.sku + '" data-i="' + key + '" class="btn btn-primary update">update</a></td></tr>');
+                  });
+
+                  $("#products").html(items.join(''));
+
+                  $(".update").bind("click",showUpdate);
+                  $(".delete").bind("click",del);
+                });
+            }
+
+            // Create new product
+            $("#create").click(function(){
+                $.post(api, 
+                    { 
+                        Sku: $("#sku").val(), 
+                        Name: $("#name").val(), 
+                        Price: $("#price").val() 
+                    }).success(function(){
+                        read();
+                    }
+                );
+            });
+
+            // Update existing product
+            $("#update").click(function(){
+                $.ajax({
+                    type: "PUT",
+                    url: api + "/" + $("#u-sku").val(),
+                    dataType: "json",
+                    data: { 
+                        Sku: $("#u-sku").val(), 
+                        Name: $("#u-name").val(), 
+                        Price: $("#u-price").val() 
+                    },
+                    success: function( response ){
+                        read();
+                    }
+                });
+            });
+
+            // Delete existing product
+            function del(){
+                $.ajax({
+                    type: "DELETE",
+                    url: api + "/" + $(this).attr("id"),
+                    success: function( response ){
+                        read();
+                    }
+                });
+            }
+
+            // Display update modal
+            function showUpdate(){
+                var i = $(this).attr("data-i");
+
+                $("#u-sku").val(products[i].sku);
+                $("#u-name").val(products[i].name);
+                $("#u-price").val(products[i].price);
+
+                $('#updateModal').modal('show');
+            }
+
+            read();
+        </script>
+    </body>
+</html>

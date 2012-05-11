@@ -1,0 +1,13 @@
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\SignalRChat.dll
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\SignalRChat.pdb
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\EntityFramework.dll
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\Newtonsoft.Json.dll
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\SignalR.dll
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\SignalR.Hosting.AspNet.dll
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\EntityFramework.xml
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\Newtonsoft.Json.pdb
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\bin\Newtonsoft.Json.xml
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\obj\Debug\SignalRChat.dll
+C:\Users\nielsrobin\Documents\My Dropbox\Projects\ClientSide\CommunityDay2012\SignalRChat\obj\Debug\SignalRChat.pdb

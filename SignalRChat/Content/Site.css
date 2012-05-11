@@ -1,0 +1,22 @@
+#site {
+    width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px 1px #999, inset 0 0 10px #ddd;
+    border-radius: 10px;
+} 
+
+.hide { display: none; }
+
+#chat  
+{
+    height: 300px; 
+    overflow: auto; 
+    background: #eee; 
+    margin: 10px 0; 
+    border-radius: 5px; 
+    padding: 10px;
+}
+
+.btn { margin-top: -8px;}
+.green { color: green;}

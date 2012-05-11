@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <link rel="shortcut icon" href="http://trollbeads.com/css/images/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <style type='text/css'>
+            #site {
+                width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+                box-shadow: 0 0 10px 1px #999, inset 0 0 10px #ddd;
+                border-radius: 10px;
+            } 
+
+            .hide { display: none; }
+            #chat { height: 300px; overflow: auto; background: #eee; margin: 10px 0; border-radius: 5px; padding: 10px;}
+            .btn { margin-top: -8px;}
+            .green { color: green;}
+        </style>
+    </head>
+    <body>
+        <div id='site'>
+            <h1>Chat</h1>
+
+            <div id='chat'></div>
+            <input type='text' placeholder='type a username' id='user' />
+            <input type='text' placeholder='type a msg' id='msg' />
+            <a href='#' class='btn btn-success' id='post'>post</a>
+
+            
+        </div>
+
+
+        <script type="text/javascript" src='js/jquery-1.7.2.min.js'></script>
+        <script type="text/javascript" src='js/socket.io.js'></script>
+        <script type="text/javascript" src='js/bison.js'></script>
+        <script type="text/javascript">
+            var socket = io.connect('http://localhost:8888');
+            $chat = $("#chat");
+
+            $("#post").click(function(){
+                var msg = $("#msg").val();
+                var user = $("#user").val();
+                socket.emit('say', { user: user, msg: msg });
+                $chat.prepend("<p><b class='green'>You</b>: " + msg + "</p>");
+            });
+
+            socket.on('say', function (data) {
+                $chat.prepend("<p><b>" + data.user + "</b>: " + data.msg + "</p>");
+            });
+        </script>
+    </body>
+</html>
